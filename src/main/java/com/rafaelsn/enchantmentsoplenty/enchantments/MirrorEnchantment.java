@@ -1,5 +1,7 @@
-package com.rafaelsn.enchantmentsoplenty;
+package com.rafaelsn.enchantmentsoplenty.enchantments;
 
+import com.rafaelsn.enchantmentsoplenty.EnchantmentsOPlenty;
+import com.rafaelsn.enchantmentsoplenty.utils.RandomHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -10,15 +12,12 @@ import net.minecraft.entity.monster.ElderGuardianEntity;
 import net.minecraft.entity.monster.EvokerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Random;
-
-import static com.rafaelsn.enchantmentsoplenty.EnchantmentsOPlenty.ObjectHolders.MIRROR;
+import static com.rafaelsn.enchantmentsoplenty.EnchantmentsHolder.MIRROR;
 import static com.rafaelsn.enchantmentsoplenty.EnchantmentsOPlenty.SWORD;
 import static net.minecraft.util.SoundEvents.BLOCK_BELL_USE;
 
@@ -30,26 +29,6 @@ public class MirrorEnchantment extends Enchantment {
                 EquipmentSlotType.MAINHAND
         });
         this.setRegistryName("mirror");
-    }
-
-    @Override
-    public int getMinEnchantability(int level) {
-        return 15;
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 1;
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return true;
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return true;
     }
 
     @SubscribeEvent
@@ -70,12 +49,11 @@ public class MirrorEnchantment extends Enchantment {
         int level = EnchantmentHelper.getEnchantmentLevel(MIRROR, playerEntity.getHeldItemMainhand().getStack());
         if (level == 0) return;
 
-        final Random rand = new Random();
-        if (rand.nextFloat() > 0.3f) return;
+        if (RandomHelper.random.nextFloat() > 0.3f) return;
 
         Entity childEntity = livingEntity.getType().create(world);
         if (childEntity != null) {
-            childEntity.setLocationAndAngles(livingEntity.getPosX() + (rand.nextFloat() - 0.5f) * 2, livingEntity.getPosY() + 0.5D, livingEntity.getPosZ() + (rand.nextFloat() - 0.5f) * 2, rand.nextFloat() * 360.0F, 0.0F);
+            childEntity.setLocationAndAngles(livingEntity.getPosX() + (RandomHelper.random.nextFloat() - 0.5f) * 2, livingEntity.getPosY() + 0.5D, livingEntity.getPosZ() + (RandomHelper.random.nextFloat() - 0.5f) * 2, RandomHelper.random.nextFloat() * 360.0F, 0.0F);
             world.summonEntity(childEntity);
             childEntity.playSound(BLOCK_BELL_USE, 2.0f, 1.0f);
         }

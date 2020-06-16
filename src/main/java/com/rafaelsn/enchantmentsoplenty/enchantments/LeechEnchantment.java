@@ -1,5 +1,6 @@
-package com.rafaelsn.enchantmentsoplenty;
+package com.rafaelsn.enchantmentsoplenty.enchantments;
 
+import com.rafaelsn.enchantmentsoplenty.EnchantmentsOPlenty;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,7 +9,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.rafaelsn.enchantmentsoplenty.EnchantmentsOPlenty.ObjectHolders.LEECH;
+import static com.rafaelsn.enchantmentsoplenty.EnchantmentsHolder.LEECH;
 import static com.rafaelsn.enchantmentsoplenty.EnchantmentsOPlenty.SWORD;
 
 @Mod.EventBusSubscriber(modid= EnchantmentsOPlenty.MODID)
@@ -27,8 +28,7 @@ public class LeechEnchantment extends Enchantment {
             int level = EnchantmentHelper.getEnchantmentLevel(LEECH, player.getHeldItemMainhand().getStack());
             if (level > 0) {
                 float damage = event.getAmount();
-                float healAmount = Math.min(0.5f, damage * level * 0.1f);
-//                LOGGER.info("Heal for " + healAmount);
+                float healAmount = Math.max(0.5f, damage * level * 0.1f);
                 player.heal(healAmount);
             }
         }
