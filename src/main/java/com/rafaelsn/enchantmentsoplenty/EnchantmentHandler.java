@@ -2,6 +2,7 @@ package com.rafaelsn.enchantmentsoplenty;
 
 import com.rafaelsn.enchantmentsoplenty.enchantments.LeechEnchantment;
 import com.rafaelsn.enchantmentsoplenty.enchantments.MirrorEnchantment;
+import com.rafaelsn.enchantmentsoplenty.enchantments.WitherEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,6 +21,7 @@ public class EnchantmentHandler {
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
         enchants.add(new MirrorEnchantment());
         enchants.add(new LeechEnchantment());
+        enchants.add(new WitherEnchantment());
 
         IForgeRegistry<Enchantment> r = event.getRegistry();
 
