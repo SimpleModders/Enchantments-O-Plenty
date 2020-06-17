@@ -1,5 +1,6 @@
 package com.rafaelsn.enchantmentsoplenty;
 
+import com.rafaelsn.enchantmentsoplenty.enchantments.FlowerPathEnchantment;
 import com.rafaelsn.enchantmentsoplenty.enchantments.LeechEnchantment;
 import com.rafaelsn.enchantmentsoplenty.enchantments.MirrorEnchantment;
 import com.rafaelsn.enchantmentsoplenty.enchantments.WitherEnchantment;
@@ -22,6 +23,7 @@ public class EnchantmentHandler {
         enchants.add(new MirrorEnchantment());
         enchants.add(new LeechEnchantment());
         enchants.add(new WitherEnchantment());
+        enchants.add(new FlowerPathEnchantment());
 
         IForgeRegistry<Enchantment> r = event.getRegistry();
 

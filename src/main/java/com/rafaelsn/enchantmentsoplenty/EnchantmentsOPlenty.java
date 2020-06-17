@@ -1,6 +1,7 @@
 package com.rafaelsn.enchantmentsoplenty;
 
 import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,6 +19,7 @@ public class EnchantmentsOPlenty
     public static final String MODID = "enchantmentsoplenty";
 
     public static final EnchantmentType SWORD = addEnchantment("sword", SwordItem.class::isInstance);
+    public static final EnchantmentType FEET = addEnchantment("feet", ArmorItem.class::isInstance);
 
     public EnchantmentsOPlenty() {
         MinecraftForge.EVENT_BUS.register(this);
