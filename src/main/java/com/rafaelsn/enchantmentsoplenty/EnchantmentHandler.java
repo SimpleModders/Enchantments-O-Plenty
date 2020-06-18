@@ -5,33 +5,27 @@ import com.rafaelsn.enchantmentsoplenty.enchantments.LeechEnchantment;
 import com.rafaelsn.enchantmentsoplenty.enchantments.MirrorEnchantment;
 import com.rafaelsn.enchantmentsoplenty.enchantments.WitherEnchantment;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.HashSet;
-import java.util.Set;
+import static com.rafaelsn.enchantmentsoplenty.EnchantmentsOPlenty.MODID;
 
-@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class EnchantmentHandler {
 
-    protected static final Set<Enchantment> enchants = new HashSet<>();
+    public static final DeferredRegister<Enchantment> ENCHANTS = new DeferredRegister<>(ForgeRegistries.ENCHANTMENTS, MODID);
 
-    @SubscribeEvent
-    public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
-        enchants.add(new MirrorEnchantment());
-        enchants.add(new LeechEnchantment());
-        enchants.add(new WitherEnchantment());
-        enchants.add(new FlowerPathEnchantment());
+    public static final RegistryObject<Enchantment> MIRROR_ENCHANTMENT =
+            ENCHANTS.register("mirror", MirrorEnchantment::new);
 
-        IForgeRegistry<Enchantment> r = event.getRegistry();
+    public static final RegistryObject<Enchantment> LEECH_ENCHANTMENT =
+            ENCHANTS.register("leech", LeechEnchantment::new);
 
-        for (Enchantment enchant : enchants)
-            r.register(enchant);
+    public static final RegistryObject<Enchantment> WITHER_ENCHANTMENT =
+            ENCHANTS.register("wither", WitherEnchantment::new);
 
-        EnchantmentsOPlenty.LOGGER.info("Registered {} enchantments!", enchants.size());
-    }
+    public static final RegistryObject<Enchantment> FLOWER_PATH_ENCHANTMENT =
+            ENCHANTS.register("flower_path", FlowerPathEnchantment::new);
 
     private EnchantmentHandler() {
         throw new IllegalStateException("Utility class");
