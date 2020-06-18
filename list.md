@@ -1,11 +1,9 @@
 ---
 layout: default
-title: Enchantment List
+title: Enchantments
 ---
 
 [Back](./)
-
-## Welcome to another page
 
 **Wither**
 
