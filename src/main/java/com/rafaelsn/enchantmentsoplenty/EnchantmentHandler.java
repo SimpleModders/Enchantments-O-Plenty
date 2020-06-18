@@ -1,9 +1,6 @@
 package com.rafaelsn.enchantmentsoplenty;
 
-import com.rafaelsn.enchantmentsoplenty.enchantments.FlowerPathEnchantment;
-import com.rafaelsn.enchantmentsoplenty.enchantments.LeechEnchantment;
-import com.rafaelsn.enchantmentsoplenty.enchantments.MirrorEnchantment;
-import com.rafaelsn.enchantmentsoplenty.enchantments.WitherEnchantment;
+import com.rafaelsn.enchantmentsoplenty.enchantments.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,6 +23,9 @@ public class EnchantmentHandler {
 
     public static final RegistryObject<Enchantment> FLOWER_PATH_ENCHANTMENT =
             ENCHANTS.register("flower_path", FlowerPathEnchantment::new);
+
+    public static final RegistryObject<Enchantment> EXPLOSIVE_ENCHANTMENT =
+            ENCHANTS.register("explosive", ExplosiveEnchantment::new);
 
     private EnchantmentHandler() {
         throw new IllegalStateException("Utility class");

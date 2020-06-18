@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import static com.rafaelsn.enchantmentsoplenty.EnchantmentHandler.FLOWER_PATH_ENCHANTMENT;
 
-@Mod.EventBusSubscriber(modid= EnchantmentsOPlenty.MODID)
+@Mod.EventBusSubscriber(modid = EnchantmentsOPlenty.MODID)
 public class FlowerPathEnchantment extends Enchantment {
     public FlowerPathEnchantment() {
         super(Rarity.RARE, EnchantmentType.ARMOR_FEET, new EquipmentSlotType[]{
@@ -49,11 +49,9 @@ public class FlowerPathEnchantment extends Enchantment {
                 BlockPos aboveBlockPos = new BlockPos(groundBlockPos.getX(), groundBlockPos.getY() + 1, groundBlockPos.getZ());
                 BlockState aboveBlockState = world.getBlockState(aboveBlockPos);
 
-                if (validLocation(groundBlock, aboveBlockState)) {
-                    if (player.getRNG().nextFloat() < (0.01 * level)) {
-                        Block flower = getFlower(player.getRNG().nextInt(12));
-                        world.setBlockState(aboveBlockPos, flower.getDefaultState());
-                    }
+                if (player.getRNG().nextFloat() < (0.01 * level) && validLocation(groundBlock, aboveBlockState)) {
+                    Block flower = getFlower(player.getRNG().nextInt(12));
+                    world.setBlockState(aboveBlockPos, flower.getDefaultState());
                 }
             }
         }
